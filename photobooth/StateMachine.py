@@ -288,7 +288,7 @@ class ErrorState(State):
             else:
                 context.state = TeardownState(TeardownEvent.WELCOME)
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class TeardownState(State):
@@ -311,7 +311,7 @@ class TeardownState(State):
             else:
                 raise ValueError('Unknown GuiEvent "{}"'.format(event.name))
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class WelcomeState(State):
@@ -328,7 +328,7 @@ class WelcomeState(State):
             elif event.name == 'exit':
                 context.state = TeardownState(TeardownEvent.EXIT)
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class StartupState(State):
@@ -343,7 +343,7 @@ class StartupState(State):
             context.is_running = True
             context.state = IdleState()
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class IdleState(State):
@@ -358,7 +358,7 @@ class IdleState(State):
            event.name == 'trigger'):
             context.state = GreeterState()
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class GreeterState(State):
@@ -373,7 +373,7 @@ class GreeterState(State):
            event.name == 'countdown'):
             context.state = CountdownState(1)
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class CountdownState(State):
@@ -396,7 +396,7 @@ class CountdownState(State):
         elif isinstance(event, GuiEvent) and event.name == 'capture':
             context.state = CaptureState(self.num_picture)
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class CaptureState(State):
@@ -419,7 +419,7 @@ class CaptureState(State):
         elif isinstance(event, CameraEvent) and event.name == 'assemble':
             context.state = AssembleState()
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class AssembleState(State):
@@ -433,7 +433,7 @@ class AssembleState(State):
         if isinstance(event, CameraEvent) and event.name == 'review':
             context.state = ReviewState(event.picture)
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class ReviewState(State):
@@ -453,7 +453,7 @@ class ReviewState(State):
         if isinstance(event, GuiEvent) and event.name == 'postprocess':
             context.state = PostprocessState()
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
 
 
 class PostprocessState(State):
@@ -468,4 +468,4 @@ class PostprocessState(State):
            event.name == 'idle'):
             context.state = IdleState()
         else:
-            logging.error('Unknown Event type "{}" in state "{}"').format(event, self)
+            logging.error('Unknown Event type "{}" in state "{}"'.format(event, self))
